@@ -54,7 +54,7 @@ export function getThumbnailPath (relativeUrl: string, width: number = 0, height
   }
 
   if (config.images.useExactUrlsNoProxy) {
-    const path = relativeUrl && relativeUrl.indexOf('no_selection') < 0 ? relativeUrl : config.images.productPlaceholder || ''
+    const path = relativeUrl && relativeUrl.indexOf('no_selection') < 0 ? relativeUrl : config.images.productPlaceholder || relativeUrl
     return coreHooksExecutors.afterProductThumbnailPathGenerate({ path, sizeX: width, sizeY: height, pathType }).path // this is exact url mode
   } else {
     let resultUrl
