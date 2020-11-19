@@ -54,7 +54,8 @@ export function getThumbnailPath (relativeUrl: string, width: number = 0, height
   }
 
   if (config.images.useExactUrlsNoProxy) {
-    return coreHooksExecutors.afterProductThumbnailPathGenerate({ path: relativeUrl, sizeX: width, sizeY: height, pathType }).path // this is exact url mode
+    const path = relativeUrl && relativeUrl.indexOf('no_selection') < 0 ? relativeUrl : config.images.productPlaceholder || ''
+    return coreHooksExecutors.afterProductThumbnailPathGenerate({ path, sizeX: width, sizeY: height, pathType }).path // this is exact url mode
   } else {
     let resultUrl
     if (relativeUrl && (relativeUrl.indexOf('://') > 0 || relativeUrl.indexOf('?') > 0 || relativeUrl.indexOf('&') > 0)) relativeUrl = encodeURIComponent(relativeUrl)
